@@ -257,6 +257,31 @@ export class ActorSheetCoD extends ActorSheet {
 	_configureDots(actorData) {
 		let attributes = duplicate(CONFIG.attributes);
 		let skills = duplicate(CONFIG.skills);
+		switch(actorData.splatSelect.value){
+			case "vampire":
+				actorData.vamp_dots = {
+					bpDots: [],
+					vtMaxDots: [],
+					vtCurrentDots: [],
+				};
+				for (let i = 0; i < actorData.vamp_advantages.bloodpotency.value; i++){
+					actorData.vamp_dots.bpDots.push({
+						full:true,
+					});
+				};
+				for (let i = 0; i < actorData.vamp_advantages.vitae.max; i++){
+					actorData.vamp_dots.vtMaxDots.push({
+						full:true,
+					});
+				};
+				for (let i = 0; i < actorData.vamp_advantages.vitae.value; i++){
+					actorData.vamp_dots.vtCurrentDots.push({
+						full:true,
+					});
+				};
+				break;
+		}
+
 
 		actorData.dots = {
 			hpMaxDots: [],

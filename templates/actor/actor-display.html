@@ -506,6 +506,52 @@
 					data-dtype="Number"
 				/>
 			</div>
+<<<<<<< HEAD
+			<div class="vamp_resource">
+				<h3>Blood Potency</h3>
+				{{#each actor.data.vamp_dots.bpDots as |item id|}}
+				<span>⚫</span>
+				{{/each}}<br />
+			<input
+					type="number"
+					name="data.vamp_advantages.bloodpotency.value"
+					value="{{data.vamp_advantages.bloodpotency.value}}"
+					data-dtype="Number"
+				/>
+				<span> / </span>
+				<input
+					type="number"
+					name="data.vamp_advantages.bloodpotency.max"
+					value="{{data.vamp_advantages.bloodpotency.max}}"
+					data-dtype="Number"
+				/>
+			</div>
+			<div class="vamp_resource">
+				<h3>Vitae</h3>
+				{{#each actor.data.vamp_dots.vtCurrentDots as |item id|}}
+				<span>⚫</span>
+				{{/each}}<br />
+				<hr />
+				{{#each actor.data.vamp_dots.vtMaxDots as |item id|}}
+				<span>⚫</span>
+				{{/each}}<br />
+				<br />
+				<input
+					type="number"
+						  name="data.vamp_advantages.vitae.value"
+						  value="{{data.vamp_advantages.vitae.value}}"
+						  data-dtype="Number"
+				/>
+				<span> / </span>
+				<input
+					type="number"
+					name="data.vamp_advantages.vitae.max"
+					value="{{data.vamp_advantages.vitae.max}}"
+					data-dtype="Number"
+				/>
+			</div>
+=======
+>>>>>>> 188d47b... v0.48
 		</div>
 
 		<div style="clear: both;"></div>

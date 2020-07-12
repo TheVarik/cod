@@ -528,7 +528,11 @@
 			},
 
 			"vampire": {
+<<<<<<< HEAD
+				"vamp_attributes": {
+=======
 				"vamp-attributes": {
+>>>>>>> 188d47b... v0.48
 					"int": {
 						"type": "Number",
 						"label": "Intelligence",
@@ -593,7 +597,11 @@
 						"max": 10
 					}
 				},
+<<<<<<< HEAD
+				"vamp_advantages": {
+=======
 				"vamp-advantages": {
+>>>>>>> 188d47b... v0.48
 					"hp": {
 						"type": "Number",
 						"label": "Health",
@@ -623,7 +631,11 @@
 						"min": 0
 					}
 				},
+<<<<<<< HEAD
+				"vamp_details": {
+=======
 				"vamp-details": {
+>>>>>>> 188d47b... v0.48
 					"apparentage": {
 						"type": "String",
 						"label": "Apparent Age",
@@ -729,7 +741,11 @@
 						}
 					}
 				},
+<<<<<<< HEAD
+				"vamp_status": {
+=======
 				"vamp-status": {
+>>>>>>> 188d47b... v0.48
 					"banes": {
 						"bane1": {
 							"type": "String",
@@ -751,7 +767,11 @@
 			},
 
 			"werewolf": {
+<<<<<<< HEAD
+				"wolf_advantages": {
+=======
 				"wolf-advantages": {
+>>>>>>> 188d47b... v0.48
 					"hp": {
 						"type": "Number",
 						"label": "Health",
@@ -808,7 +828,11 @@
 						"min": 0
 					}
 				},
+<<<<<<< HEAD
+				"wolf_details": {
+=======
 				"wolf-details": {
+>>>>>>> 188d47b... v0.48
 					"auspice": {
 						"type": "String",
 						"label": "Auspice",
@@ -876,12 +900,20 @@
 						}
 					}
 				},
+<<<<<<< HEAD
+				"wolf_currentForm": {
+=======
 				"wolf-currentForm": {
+>>>>>>> 188d47b... v0.48
 					"type": "String",
 					"label": "Current Form",
 					"value": ""
 				},
+<<<<<<< HEAD
+				"wolf_totem": {
+=======
 				"wolf-totem": {
+>>>>>>> 188d47b... v0.48
 					"attributes": {
 						"power": {
 							"type": "Number",
@@ -1002,7 +1034,11 @@
 			},
 
 			"mage": {
+<<<<<<< HEAD
+				"mage_arcana": {
+=======
 				"mage-arcana": {
+>>>>>>> 188d47b... v0.48
 					"death": {
 						"type": "Number",
 						"label": "Death",
@@ -1074,7 +1110,11 @@
 						"max": 5
 					}
 				},
+<<<<<<< HEAD
+				"mage_advantages": {
+=======
 				"mage-advantages": {
+>>>>>>> 188d47b... v0.48
 					"gnosis": {
 						"type": "Number",
 						"label": "Gnosis",
@@ -1090,7 +1130,11 @@
 						"min": 0
 					}
 				},
+<<<<<<< HEAD
+				"mage_details": {
+=======
 				"mage-details": {
+>>>>>>> 188d47b... v0.48
 					"path": {
 						"type": "String",
 						"label": "Path",
@@ -1146,7 +1190,11 @@
 						"value": ""
 					}
 				},
+<<<<<<< HEAD
+				"mage_advancement": {
+=======
 				"mage-advancement": {
+>>>>>>> 188d47b... v0.48
 					"arcanebeats": {
 						"type": "Number",
 						"label": "Arcane Beats",
@@ -1160,7 +1208,11 @@
 						"min": 0
 					}
 				},
+<<<<<<< HEAD
+				"mage_familiar": {
+=======
 				"mage-familiar": {
+>>>>>>> 188d47b... v0.48
 					"attributes": {
 						"power": {
 							"type": "Number",
