@@ -610,17 +610,11 @@ height: 67%
 	border-bottom: 1px solid #000;
 }
 
-<<<<<<< HEAD
+
 .vamp-details-block {
 	display: none;
 }
 .vampire .vamp-details-block {
-=======
-.vamp-bg-block {
-	display: none;
-}
-.vampire .vamp-bg-block {
->>>>>>> 188d47b... v0.48
 	display: block;
 }
 
@@ -875,13 +869,12 @@ height: 67%
 	padding: 0px 0;
 	border-bottom: 1px solid #782e2250;
 }
-<<<<<<< HEAD
+
 .vampire .vamp_resource{
 	display: block;
 }
-=======
 
->>>>>>> 188d47b... v0.48
+
 .vamp_bloodpotency {
 	display: none;
 	line-height: 50px;
@@ -903,15 +896,12 @@ height: 67%
 	margin-top: -2px;
 }
 
-<<<<<<< HEAD
 .vamp_resource{
 	display: none;
 }
 
 
 .vamp_resource,
-=======
->>>>>>> 188d47b... v0.48
 .resource {
 	width: 100%;
 	margin-top: 10px;
@@ -922,13 +912,6 @@ height: 67%
 	width: 100px;
 }
 
-<<<<<<< HEAD
-=======
-.vampire .display-other {
-	display: none;
-}
-
->>>>>>> 188d47b... v0.48
 /* --------------- Sheet Bubbles --------------- */
 /* ●●●●●●●●●●●●●●● Sheet Bubbles ●●●●●●●●●●●●●●● */
 /* --------------- Sheet Bubbles --------------- */
