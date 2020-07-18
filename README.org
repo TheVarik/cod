@@ -1,0 +1,25 @@
+* WARNING since this sheet is not complete at all characters may break after an update
+* cod
+
+Chronicles of Darkness system for Foundry Virtual Tabletop, based upon
+2nd edition ruleset.
+
+Primary folder must be renamed to 'cod' and placed in your Foundry VTT
+systems folder. ( Default: %LocalAppData%\FoundryVTT\Data\systems )
+* Added in this fork
+- More complete Vampire splat sheet
+* To be done
+- Health Boxes
+- Vampire related
+  - Touchstones
+  - Check if vamp related vars are bigger or smaller than max, min respectively
+- Mage and Werewolf
+  - Add splat oriented features to the sheet
+** Splats that are least complete:
+- Changeling
+- Beast
+- Mummy
+- Hunter
+- Geist
+- Promethean
+- Demon
