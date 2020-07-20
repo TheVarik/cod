@@ -392,6 +392,19 @@
 
 	<!-- Merits + Vamp / Wolf / Mage specific traits column -->
 	<div class="mid_column2">
+		<!-- Merits. SHOULD not be touched-->
+		<div class="display-merits">
+			<h3>Merits</h3>
+			<div class="items">
+				<ol class="items-list">
+					{{#each actor.data.inventory.merits as |item id|}}
+					<li class="item flexrow" data-item-id="{{item._id}}">
+						<h4 class="item-name">{{item.name}}</h4>
+					</li>
+					{{/each}}
+				</ol>
+			</div>
+		</div>
 		<!-- If this is a Vampire sheet, then... -->
 		{{#ifEquals this.actor.data.splatSelect.value "vampire"}}
 		<div class="display-disciplines">
@@ -416,21 +429,22 @@
 				</ol>
 			</div>
 		</div>
+		<div class="display-merits">
+			<h3>Touchstones</h3>
+			<ol class="item-list">
+				{{#each data.vamp_details.touchstones as |item id|}}
+				{{item.label}}
+				<input class="input-text"
+					   type="string"
+					   name="data.vamp_details.touchstones.{{id}}.value"
+					   value="{{item.value}}"
+					   data-dtype="String" />
+				<br />
+				{{/each}}
+			</ol>
+		</div>
 		{{/ifEquals}}
 		<!-- End -->
-
-		<div class="display-merits">
-			<h3>Merits</h3>
-			<div class="items">
-				<ol class="items-list">
-					{{#each actor.data.inventory.merits as |item id|}}
-					<li class="item flexrow" data-item-id="{{item._id}}">
-						<h4 class="item-name">{{item.name}}</h4>
-					</li>
-					{{/each}}
-				</ol>
-			</div>
-		</div>
 	</div>
 	<!-- End Merits/Whatever Column -->
 
