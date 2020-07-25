@@ -10,7 +10,6 @@ systems folder. ( Default: %LocalAppData%\FoundryVTT\Data\systems )
 - More complete Vampire splat sheet
 * To be done
 - Vampire related
-  - Touchstones
   - Check if vamp related vars are bigger or smaller than max, min respectively
 - Mage and Werewolf
   - Add splat oriented features to the sheet
