@@ -46,10 +46,7 @@ export class ActorCoD extends Actor {
 
 		const exp = data.advancement.exp;
 		const beats = data.advancement.beats;
-
 		// Check to see if current HP/WP > max, correct if so
-		if (hp.value > hp.max) hp.value = hp.max;
-		if (hp.value < hp.min) hp.value = hp.min;
 		if (wp.value > wp.max) wp.value = wp.max;
 		if (wp.value < wp.min) wp.value = wp.min;
 

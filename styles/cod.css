@@ -1,3 +1,62 @@
+:root{
+  /**
+  --color-background: #00101a;
+  --color-background-glow: #a2d8f0;
+  **/
+  /**
+  --color-background: #021615;
+  --color-background-glow: #00bfc7;
+  --color-background-shadow: #9ecaed;
+  --color-header-background: #05343a;
+  --color-accent-pos: #295f08;
+  --color-accent-pos-glow: #56ce0c;
+  --color-accent-neu: #023731;
+  --color-accent-neu-glow: #a2d7ca;
+  --color-accent-neg: #391203;
+  --color-accent-neg-glow: #ff9a83;
+  **/
+  /**
+  --color-background: #130f1d;
+  --color-background-alt: #1d0a10;
+  --color-background-glow: #40bfa8;
+  --color-background-shadow: #31835f;
+  --color-header-background: #130f1d;
+  --color-accent-pos: #00290d;
+  --color-accent-pos-glow: #34ca6a;
+  --color-accent-neu: #03312c;
+  --color-accent-neu-glow: #40bfa8;
+  --color-accent-neg: #521b2c;
+  --color-accent-neg-glow: #921a1d;
+  --color-accent-neg-faint: #921a1d3b;
+  --color-text-dim: #ffffffb8;
+  **/
+
+
+  --color-text-main: #ffffff;
+
+
+  --color-background: #111111; /** #1d2123 and #151515 for text inputs **/
+  --color-background-alt: #074754;
+  --color-background-glow: #fcee09;
+  --color-background-shadow: #31835f;
+  --color-header-background: #130f1d;
+  --color-accent-pos: #00290d;
+  --color-accent-pos-glow: #34ca6a;
+  --color-accent-neu: #03312c;
+  --color-accent-neu-glow: #26ccee;
+  --color-accent-neg: #6f0000;
+  --color-accent-neg-glow: #fe0100;
+  --color-accent-neg-faint: #921a1d3b;
+  --color-text-dim: #ffffffb8;
+
+
+  --color-accent: #c0c0c06b;
+
+
+  --lineWidth: 2px;
+  --halfLineWidth: calc( var(--lineWidth) / 2 );
+  --stateLineColour: #222;
+}
 a:hover {
 	text-shadow: 0 0 8px blue;
 }
@@ -899,6 +958,149 @@ height: 67%
 .vamp_resource{
 	display: none;
 }
+.HealthTracker{
+  position:relative;
+  display:inline-block;
+  width: 100%;
+  font-size: 12px;
+}
+.HealthTracker b{ font:inherit; color:inherit; font-weight:bold;  }
+.HealthTracker .boxes{
+    display:flex;
+    padding:.75rem 0;
+    flex-wrap: wrap;
+    margin-top:-.5rem;
+}
+
+.HealthTracker .info{
+    display:flex;
+    justify-content: space-between;
+    }
+.HealthTracker .niceNumber{
+    right: 0;
+    outline:0;
+    opacity:0;
+    top: -2rem;
+    fo: ;nt-size: 20px;
+    position: absolute;
+    height: 2rem;
+}
+.HealthTracker .niceNumber:hover{
+    opacity: 1;
+}
+.niceNumber input::-webkit-outer-spin-button,
+.niceNumber input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.niceNumber{ display:flex; align-items: stretch; }
+.niceNumber input[type="number"]{
+    -moz-appearance: textfield;
+    padding:0;  margin:0;  border:0;  outline:0;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+    font-size:87.25%;
+    width:2rem;
+    text-align:center;
+    background:var();
+    color:inherit;
+    overflow:visible;
+    box-shadow:inset 0 0 0 1px var(--ex-c);
+
+}
+.niceNumber.noBtns > div.numBtns{
+    display:none;
+}
+.niceNumber > div.numBtns{
+    display:flex;
+    flex-direction: column;
+}
+.niceNumber > div.numBtns > div{
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    flex:1 0 auto;
+    line-height:.75;
+    box-shadow:inset -1px -1px 0 0 var(--ex-c);
+    padding:0 .125rem;
+    overflow: hidden;
+}
+
+.niceNumber > div.numBtns > div:hover{
+    background:rgba(var(--ex-c-rgb),.15)
+}
+
+.HealthTracker .boxes > div{
+    flex-shrink:0;
+    width:1rem;
+    height: 1rem;
+    margin-left:.25rem;
+    margin-top:.25rem;
+    border:2px solid #222;
+    box-sizing:content-box;
+    background-color:#9CFB9C;
+}
+
+.HealthTracker[data-type='oneState'] .boxes > div{
+    border-radius:1rem;
+    background:transparent;
+}
+.HealthTracker[data-type='oneState'] .boxes > div[data-state='0']{
+    background:lightblue;
+}
+
+.HealthTracker[data-type='health'] .boxes > div[data-state='1']{
+    background-color:yellowgreen;
+      background: linear-gradient(to bottom right,
+        transparent,
+        transparent calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% + var(--halfLineWidth)),
+        transparent calc(50% + var(--halfLineWidth))
+      ),
+        #FFFF9E;
+}
+.HealthTracker[data-type='health'] .boxes > div[data-state='2']{
+background: linear-gradient(to bottom right,
+        transparent,
+        transparent calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% + var(--halfLineWidth)),
+        transparent calc(50% + var(--halfLineWidth))
+      ),
+      linear-gradient(to bottom left,
+        transparent,
+        transparent calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% + var(--halfLineWidth)),
+        transparent calc(50% + var(--halfLineWidth))
+      ),
+        sandybrown;
+    }
+.HealthTracker[data-type='health'] .boxes > div[data-state='3']{
+ background: linear-gradient(to bottom right,
+        transparent,
+        transparent calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% + var(--halfLineWidth)),
+        transparent calc(50% + var(--halfLineWidth))
+      ),
+      linear-gradient(to bottom left,
+        transparent,
+        transparent calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% + var(--halfLineWidth)),
+        transparent calc(50% + var(--halfLineWidth))
+      ),
+      linear-gradient(to bottom,
+        transparent,
+        transparent calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% - var(--halfLineWidth)),
+        var(--stateLineColour) calc(50% + var(--halfLineWidth)),
+        transparent calc(50% + var(--halfLineWidth))
+      ),
+        orangered;
+}}
 
 
 .vamp_resource,

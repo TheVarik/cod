@@ -241,11 +241,10 @@
 				},
 				"advantages": {
 					"hp": {
-						"type": "Number",
-						"label": "Health",
-						"value": 1,
-						"max": 10,
-						"min": 0
+						"max": 5,
+						"lethal": 5,
+						"aggravated": 5,
+						"value": 5
 					},
 					"wp": {
 						"type": "Number",

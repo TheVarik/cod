@@ -453,21 +453,10 @@
 			<div class="resource">
 				<h3>Health</h3>
 				<div class="resource">
-					{{#each actor.data.dots.hpCurrentDots as |item id|}}
-					<span>⚫</span>
-					{{/each}}<br />
-					{{#each actor.data.dots.hpMaxDots as |item id|}}
-					<span>⚫</span>
-					{{/each}}
+					<div class="HealthTracker" data-type="health" data-name="data.advantages.hp" data-states="max/value/lethal/aggravated" data-max="{{data.advantages.hp.max}}" data-aggravated="{{data.advantages.hp.aggravated}}" data-lethal="{{data.advantages.hp.lethal}}" data-value="{{data.advantages.hp.value}}"></div>
+					<br />
 				</div>
 				<br />
-				<input
-					type="number"
-					name="data.advantages.hp.value"
-					value="{{data.advantages.hp.value}}"
-					data-dtype="Number"
-				/>
-				<span> / </span>
 				<input
 					type="number"
 					name="data.advantages.hp.max"

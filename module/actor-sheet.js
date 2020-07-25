@@ -281,8 +281,6 @@ export class ActorSheetCoD extends ActorSheet {
 				};
 				break;
 		}
-
-
 		actorData.dots = {
 			hpMaxDots: [],
 			hpCurrentDots: [],
@@ -300,12 +298,6 @@ export class ActorSheetCoD extends ActorSheet {
 			});
 		}
 
-		// Configure HP current dots
-		for (let i = 0; i < actorData.advantages.hp.value; i++) {
-			actorData.dots.hpCurrentDots.push({
-				full: true,
-			});
-		}
 
 		// Configure WP max dots
 		for (let i = 0; i < actorData.advantages.wp.max; i++) {
@@ -313,7 +305,6 @@ export class ActorSheetCoD extends ActorSheet {
 				full: true,
 			});
 		}
-
 		// Configure WP current dots
 		for (let i = 0; i < actorData.advantages.wp.value; i++) {
 			actorData.dots.wpCurrentDots.push({
@@ -362,6 +353,7 @@ export class ActorSheetCoD extends ActorSheet {
 		super.activateListeners(html);
 		const path = 'systems/cod/templates';
 
+		this._onBoxChange(html);
 		// Click attribute/skill roll
 		html.find('.roll-pool').click((event) => {
 			let defaultSelection = $(event.currentTarget).attr('data-skill');
@@ -690,5 +682,157 @@ export class ActorSheetCoD extends ActorSheet {
 
 			this.actor.update({'data.rolls': rollList});
 		});
+
+
 	}
+_onBoxChange(html){
+			let parent = html.find('.HealthTracker');
+			parent.toArray().forEach(tracker => {
+				if (!tracker.dataset.active) {
+					let td = tracker.dataset;
+					let trackerName = td.name || 'unknowntracker';
+					let trackerNameDelimiter = '.';
+					let tType = (td.type) ? td.type : 'oneState';
+					let stateOrder = (td.states) ? td.states.split('/') : ['off', 'on'];
+					let initialStateCount = stateOrder.map(v => (td[v]) ? td[v] * 1 : 0).map((v, k, a) => ((k > 0) ? a[0] - v : v)).map( v => (v < 0)?0:v ); //let initialStateCount = stateOrder.map( v => (td[v])?td[v]*1:0 );
+					let limit = stateOrder.length - 1;
+					let dots = [...Array(initialStateCount[0])].map(v => 0);
+					let extraContent = () => '';
+					let ex = {};
+					tracker.dataset.active = 1;
+					let renderBox = tracker.appendChild(document.createElement('div'));
+					let inputs = stateOrder.map((v, k) => {
+						if (k === 0) {
+							tracker.insertAdjacentHTML('afterbegin', `<div class="niceNumber" onpointerdown="let v = event.target.textContent;let i= this.querySelector('input');if(v=='+'){i.value++}if(v=='−'){i.value--};i.dispatchEvent(new Event('input',{'bubbles':true}));">
+               <input name="${trackerName + trackerNameDelimiter + v}" type="number" value="${initialStateCount[k]}">
+               <div class="numBtns"><div class Name {
+
+}="plusBtn">+</div><div class="minusBtn">−</div></div>
+              </div>`);
+							return tracker.firstChild;
+						} else {
+							let i = document.createElement('input');
+							i.type = 'hidden';
+							i.name = trackerName + trackerNameDelimiter + v
+							i.value = initialStateCount[0] - initialStateCount[k]; //i.value = initialStateCount[k];
+							return tracker.insertAdjacentElement('afterbegin', i);
+				}
+			});
+
+			initialStateCount.slice(1).forEach((sCount, stateN) => {
+				let stateNum = stateN + 1;
+				[...Array(Math.min(sCount, dots.length))].forEach((v, k) => dots[k] = stateNum);
+        });
+
+			let renderBoxes = () => {
+				renderBox.innerHTML =
+					'<div class="boxes">' + dots.reduce((a, v, k) => a + `<div data-state="${v}" data-index="${k}"></div>`, '') + '</div>' + extraContent();
+			};
+
+			let updateDots = (num, index = false) => {
+				let abNum = Math.abs(num);
+				if (index) {
+					if (num > 0) {
+						dots = dots.map((dot, i) => (dot < num && i <= index) ? num : dot)
+					} else if (num < 0) {
+						dots = dots.map((dot, i) => (dot <= abNum && dot > 0 && i >= index) ? 0 : dot)
+					}
+				} else {
+					if (num > 0) {
+						let updateIndex = dots.findIndex(v => (v < num));
+						if (updateIndex > -1) {
+							dots[updateIndex] = num;
+						} else {
+							if (num < limit) {
+								updateDots(num * 1 + 1); //Never gets called
+							}
+						}
+					} else if (num < 0) {
+						//let updateIndex = dots.reduce( (a,v,k) => (v == (num*-1) && v > 0)?k:a, -1 );
+						let updateIndex = dots.findIndex(v => (v <= abNum && v > 0));
+
+						if (updateIndex > -1) {
+							dots[updateIndex] = 0; // dots.map( (v,k) => (k >= updateIndex)?0:v );
+						}
+					}
+				}
+				dots.sort().reverse();
+
+				// Special states
+				if (tType == 'health') {
+					ex.dicePenalty = -1 * dots.slice(-limit).reduce((a, v) => (v > 0) ? a + 1 : a, 0);
+					ex.penaltyState = dots[dots.length - 1];
+				}
+
+				// update inputs
+				stateOrder.forEach((state, stateNum) => {
+					let sCount = dots.length - dots.reduce((a, d) => (d >= stateNum) ? ++a : a, 0); //let sCount = dots.reduce((a, d) => (d >= stateNum) ? ++a : a, 0);
+					let iName = trackerName + trackerNameDelimiter + state;
+					let i = inputs.find(v => (v.name && v.name == iName));
+					let ele = inputs.find(v => (v.name && v.name == iName));
+					let oldValue = (ele) ? +ele.value * 1 : false;
+					if (oldValue !== false && oldValue != sCount) {
+						//if(iName === "data.health.bashing") this.actor.update({'data.health.value': this.actor.data.data.health.max - sCount});
+						i.value = sCount;/**
+											i.dispatchEvent(new Event('input', {
+											'bubbles': true
+											}));**/
+					}
+				});
+				//inputs[0].dispatchEvent(new Event('change',{'bubbles':true}));
+				renderBoxes();
+				if(num !== 0){
+					parent.submit();
+				}
+			};
+
+			if (tType == 'health') {
+				ex.dicePenalty = 0;
+				ex.penaltyState = 0;
+				ex.penaltyMap = {
+					'0': 'physically stable',
+					'1': 'losing consciousness',
+					'2': 'bleeding out',
+					'3': 'dead'
+				};
+
+				extraContent = () => `<div class="info"><span>You are <b>${ex.penaltyMap[ex.penaltyState]}</b>.</span><span>Dice Penalty:  <b>−${Math.abs(ex.dicePenalty)}</b></span></div>`;
+			}
+
+			if (this.options.editable) {
+				tracker.addEventListener('pointerdown', (e, t = e.target) => {
+					if (t.dataset.state) {
+						let s = t.dataset.state * 1;
+						let n = s;
+						let index = false;
+						if (e.button === 2) {
+							n = -s;
+						} else {
+							n = s + 1;
+						}
+						if (tType == 'oneState' && t.dataset.index) {
+							index = t.dataset.index;
+						}
+						updateDots((n > limit) ? -limit : n, index);
+						//parent.submit();
+					}
+				});
+				tracker.addEventListener('input', (e, t = e.target) => {
+					if (t.type == 'number') {
+						let nl = +t.value * 1;
+						if (nl < dots.length) {
+							dots = dots.slice(0, +t.value * 1);
+						} else if (nl > dots.length) {
+							dots.push(...[...Array(nl - dots.length)].map(v => 0));
+						}
+
+						updateDots(0);
+					}
+				});
+			}
+					updateDots(0);
+					tracker.dataset.active = 1;
+				}
+			});
+}
 }
